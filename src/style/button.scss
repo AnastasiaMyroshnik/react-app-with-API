@@ -1,0 +1,32 @@
+@import './variables';
+
+.button {
+  min-width: 101px;
+  color: #fff;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 14px;
+  transition: 0.3s transform;
+  border: none;
+  background-color: $main-color;
+  cursor: pointer;
+  &__personage {
+    height: 40px;
+    transform: skew(-40deg, 0deg);
+    box-shadow: 0px 0px 20px rgba(185, 125, 48, 0.4);
+    .btn-text {
+      transform: skew(40deg, 0deg);
+    }
+  }
+  &__long {
+    display: block;
+    width: 170px;
+    margin: 45px auto 0 auto;
+  }
+  &:hover {
+    transform: scale(1.2) skew(-40deg, 0deg);
+  }
+  &:disabled {
+    filter: grayscale(100%);
+  }
+}
