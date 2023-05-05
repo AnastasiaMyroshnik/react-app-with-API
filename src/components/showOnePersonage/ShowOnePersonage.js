@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import Service from '../../services/Service';
 import Loading from '../loading/Loading';
 import Error from '../error/Error';
-import Skeleton from '../skeleton/Skeleton'
+import { SkeletonPersonage } from '../skeleton/Skeleton'
 
 import './showOnePersonage.scss';
 
@@ -33,7 +33,7 @@ const ShowOnePersonage = ({ personageUrl }) => {
       .catch(getError)
   }
 
-  const skeletone = personage || load || errorStatus ? null : <Skeleton/>
+  const skeletone = personage || load || errorStatus ? null : <SkeletonPersonage />
   const error = errorStatus ? <Error /> : null;
   const loading = load ? <Loading /> : null;
   const content = !(load || errorStatus) && personage ? <Displayed personage={personage}/> : null;
