@@ -6,11 +6,8 @@ class Service {
     }
     return await res.json();
   }
-  getAllPersonage = (page = 2) => {
-    return this.getData(`https://www.anapioficeandfire.com/api/characters?page=${page}&pageSize=12`);
-  }
-  getAllHouses = (page = 1) => {
-    return this.getData(`https://anapioficeandfire.com/api/houses/?page=${page}&pageSize=9`)
+  getAllItems = (request, page = 1, pageSize) => {
+    return this.getData(`https://anapioficeandfire.com/api/${request}/?page=${page}&pageSize=${pageSize}`)
   }
   getAllBooks = (page = 1) => {
     return this.getData(`https://anapioficeandfire.com/api/books?page=${page}&pageSize=6`)

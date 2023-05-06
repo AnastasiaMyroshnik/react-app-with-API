@@ -1,6 +1,4 @@
-import { useState, useEffect } from 'react';
-
-import Service from '../../services/Service';
+import useBuildOneItem from '../../hooks/buildOneItem';
 import Loading from '../loading/Loading';
 import Error from '../error/Error';
 import { SkeletonPersonage } from '../skeleton/Skeleton'
@@ -8,35 +6,13 @@ import { SkeletonPersonage } from '../skeleton/Skeleton'
 import './showOnePersonage.scss';
 
 const ShowOnePersonage = ({ personageUrl }) => {
-  const [personage, setPersonage] = useState(null);
-  const [load, setLoad] = useState(false);
-  const [errorStatus, setErrorStatus] = useState(false);
 
-  const service = new Service();
+  const { item, load, errorStatus } = useBuildOneItem(personageUrl);
 
-  useEffect(() => {
-    showPersonage();
-  }, [personageUrl]);
-
-  const showPersonage = () => {
-    if (!personageUrl) {
-      return
-    }
-    const getError = () => {
-      setLoad(false);
-      setErrorStatus(true);
-    }
-    setLoad(true);
-    service.getRequest(personageUrl)
-      .then(personage => setPersonage(personage))
-      .then(setLoad(false))
-      .catch(getError)
-  }
-
-  const skeletone = personage || load || errorStatus ? null : <SkeletonPersonage />
+  const skeletone = item || load || errorStatus ? null : <SkeletonPersonage />
   const error = errorStatus ? <Error /> : null;
   const loading = load ? <Loading /> : null;
-  const content = !(load || errorStatus) && personage ? <Displayed personage={personage}/> : null;
+  const content = !(load || errorStatus) && item ? <Displayed personage={item}/> : null;
 
   return (
     <div className="personage__info">

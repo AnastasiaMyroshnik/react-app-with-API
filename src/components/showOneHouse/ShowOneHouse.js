@@ -1,6 +1,4 @@
-import { useState, useEffect } from 'react';
-
-import Service from '../../services/Service';
+import useBuildOneItem from '../../hooks/buildOneItem';
 import Loading from '../loading/Loading';
 import Error from '../error/Error';
 import { SkeletonHouse } from '../skeleton/Skeleton'
@@ -8,35 +6,13 @@ import { SkeletonHouse } from '../skeleton/Skeleton'
 import '../showOnePersonage/showOnePersonage.scss';
 
 const ShowOneHouse = ({houseUrl}) => {
-  const [house, setHouse] = useState(null);
-  const [load, setLoad] = useState(false);
-  const [errorStatus, setErrorStatus] = useState(false);
+  
+  const { item, load, errorStatus } = useBuildOneItem(houseUrl);
 
-  const service = new Service();
-
-  useEffect(() => {
-    ShowOneHouse();
-  }, [houseUrl])
-
-  const ShowOneHouse = () => {
-    if (!houseUrl) {
-      return
-    }
-    const getError = () => {
-      setLoad(false);
-      setErrorStatus(true);
-    }
-    setLoad(true);
-    service.getRequest(houseUrl)
-      .then(house => setHouse(house))
-      .then(setLoad(false))
-      .catch(getError)
-  }
-
-  const skeletone = house || load || errorStatus ? null : <SkeletonHouse />
+  const skeletone = item || load || errorStatus ? null : <SkeletonHouse />
   const error = errorStatus ? <Error /> : null;
   const loading = load ? <Loading /> : null;
-  const content = !(load || errorStatus) && house ? <Displayed house={house} /> : null;
+  const content = !(load || errorStatus) && item ? <Displayed house={item} /> : null;
 
   return (
     <div className="personage__info">

@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-import Header from "../Header/Header";
-import { MainPage, HousesPage, BooksPage } from '../pages';
+import Header from "../header/Header";
+import { MainPage, HousesPage, BooksPage, NoMatch } from '../pages';
 
 const App = () => {
   return (
@@ -12,7 +12,8 @@ const App = () => {
             <Routes>
               <Route path="/" element={<MainPage />} />
               <Route path="/houses" element={<HousesPage />} />
-            <Route path="/books" element={<BooksPage />} />
+              <Route path="/books" element={<BooksPage />} />
+            <Route path="*" element={<NoMatch/>}/>
             </Routes>
           </main>
         </div>
