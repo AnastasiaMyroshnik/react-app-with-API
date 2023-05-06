@@ -4,9 +4,8 @@ import Service from '../services/Service';
 
 import '../components/personageList/personageList.scss';
 
-const useBuildContentList = (request, pageSize, choosenUrl, contentType) => {
-
-  const [contentList, setContentList] = useState([]);
+const useSendingRequest = (request, pageSize) => {
+const [contentList, setContentList] = useState([]);
   const [load, setLoad] = useState(true);
   const [newContentLoading, setNewContentLoading] = useState(false);
   const [errorStatus, setErrorStatus] = useState(false);
@@ -37,6 +36,11 @@ const useBuildContentList = (request, pageSize, choosenUrl, contentType) => {
     setLoad(false);
     setErrorStatus(true);
   }
+
+  return { contentList, errorStatus, load, newContentLoading, isEnd, getData, pageNum }
+}
+
+const useRenderContentList = (request, choosenUrl, contentType) => {
 
   const refs = useRef([]);
 
@@ -76,7 +80,7 @@ const useBuildContentList = (request, pageSize, choosenUrl, contentType) => {
     )
   }
 
-  return { renderContent, contentList, errorStatus, load, newContentLoading, isEnd, getData, pageNum }
+  return { renderContent }
 }
 
-export default useBuildContentList;
+export {useSendingRequest, useRenderContentList };

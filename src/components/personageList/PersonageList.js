@@ -1,11 +1,12 @@
-import useBuildContentList from "../../hooks/buildContentList";
+import { useSendingRequest, useRenderContentList } from "../../hooks/buildContentList";
 
 import Error from "../error/Error";
 import Loading from '../loading/Loading';
 
 const PersonageList = ({ choosenUrl }) => {
 
-  const { renderContent, contentList, errorStatus, load, newContentLoading, isEnd, getData, pageNum } = useBuildContentList('characters', 12, choosenUrl, 'personageList');
+  const { contentList, errorStatus, load, newContentLoading, isEnd, getData, pageNum } = useSendingRequest('characters', 12);
+  const { renderContent } = useRenderContentList('characters', choosenUrl, 'personageList');
 
   const loadedPersonages = renderContent(contentList);
   const error = errorStatus ? <Error /> : null;

@@ -1,4 +1,4 @@
-import useBuildContentList from '../../hooks/buildContentList';
+import { useSendingRequest, useRenderContentList } from '../../hooks/buildContentList';
 
 import Error from '../error/Error';
 import Loading from '../loading/Loading';
@@ -7,7 +7,9 @@ import '../personageList/personageList.scss';
 
 const HouseList = ({choosenUrl}) => {
 
-  const { renderContent, contentList, errorStatus, load, newContentLoading, isEnd, getData, pageNum } = useBuildContentList('houses', 9, choosenUrl, 'housesList');
+  const { contentList, errorStatus, load, newContentLoading, isEnd, getData, pageNum } = useSendingRequest('houses', 9);
+
+  const { renderContent } = useRenderContentList('houses', choosenUrl, 'housesList');
 
   const loadedHouses = renderContent(contentList);
   const error = errorStatus ? <Error /> : null;

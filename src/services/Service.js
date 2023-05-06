@@ -6,14 +6,14 @@ class Service {
     }
     return await res.json();
   }
-  getAllItems = (request, page = 1, pageSize) => {
-    return this.getData(`https://anapioficeandfire.com/api/${request}/?page=${page}&pageSize=${pageSize}`)
+  getAllItems = async (request, page = 1, pageSize) => {
+return await this.getData(`https://anapioficeandfire.com/api/${request}/?page=${page}&pageSize=${pageSize}`)
   }
-  getAllBooks = (page = 1) => {
-    return this.getData(`https://anapioficeandfire.com/api/books?page=${page}&pageSize=6`)
+  getOneBook = async (id) => {
+    return await this.getData(`https://anapioficeandfire.com/api/books/${id}`)
   }
-  getRequest = (url) => {
-    return this.getData(url)
+  getRequest = async  (url) => {
+    return await this.getData(url)
   }
 }
 
