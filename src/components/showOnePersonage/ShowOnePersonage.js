@@ -12,7 +12,7 @@ const ShowOnePersonage = ({ personageUrl }) => {
   const skeletone = item || load || errorStatus ? null : <SkeletonPersonage />
   const error = errorStatus ? <Error /> : null;
   const loading = load ? <Loading /> : null;
-  const content = !(load || errorStatus) && item ? <Displayed personage={item}/> : null;
+  const content = !(load || errorStatus) && item ? <Displayed personage={item} /> : null;
 
   return (
     <div className="personage__info">
@@ -29,8 +29,7 @@ const Displayed = ({ personage }) => {
   const { culture, born, titles, aliases, tvSeries, playedBy, name, gender, books, povBooks } = personage;
 
   const transform = (selector, title) => {
-    if (selector.length >= 1 && selector[0].length >= 1)
-      {
+    if (selector.length >= 1 && selector[0].length >= 1) {
       return <><span>{title}:</span><ul className="personage__list">
         {selector.map((item, i) => {
           return (
@@ -40,7 +39,7 @@ const Displayed = ({ personage }) => {
           )
         })}
       </ul></>
-      } 
+    }
     else {
       return null
     };
@@ -61,7 +60,7 @@ const Displayed = ({ personage }) => {
   const actor = transform(playedBy, 'Played By');
 
   return (
-  <>
+    <>
       <div className="personage__info-name">{name}</div>
       <div> <span>Gender:</span></div>
       <div>{gender}</div>
@@ -72,7 +71,7 @@ const Displayed = ({ personage }) => {
       {seasonsContent}
       {bookContent}
       {actor}
-  </>
+    </>
   )
 }
 
