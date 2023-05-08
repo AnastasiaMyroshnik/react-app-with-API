@@ -8,7 +8,7 @@ const BooksPage = () => {
     <ErrorBoundary>
       <BooksList />
     </ErrorBoundary>
-    <img className="bg-decoration" src={decoration} alt="personages" />
+    <img className="bg-decoration  bg-decoration--dn" src={decoration} alt="personages" />
   </>
   )
 }

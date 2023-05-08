@@ -20,7 +20,7 @@ const HousesPage = () => {
           <ShowOneHouse houseUrl={choosenHouseUrl} />
         </ErrorBoundary>
       </div>
-      <img className="bg-decoration" src={decoration} alt="personages" />
+      <img className="bg-decoration " src={decoration} alt="personages" />
     </>
   )
 }

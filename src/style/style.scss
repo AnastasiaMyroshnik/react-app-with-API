@@ -44,21 +44,21 @@ p {
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0; 
+  -webkit-appearance: none;
+  margin: 0; 
 }
 
 .app {
-    width: 1100px;
-    margin: 0 auto;
-    padding: 50px 0 50px 0;
-    .bg-decoration {
-        position: fixed;
-        right: 100px;
-        bottom: 20px;
-        z-index: -1;
-        height: 400px;
-    }
+  width: 1100px;
+  margin: 0 auto;
+  padding: 50px 0 50px 0;
+  .bg-decoration {
+    position: fixed;
+    right: 100px;
+    bottom: 20px;
+    z-index: -1;
+    height: 400px;
+  }
 }
 
 .not-found {
@@ -77,8 +77,8 @@ input::-webkit-inner-spin-button {
 }
 
 main {
-    margin-top: 50px;
-    position: relative;
+  margin-top: 50px;
+  position: relative;
 }
 
 .pulse {
@@ -95,4 +95,47 @@ main {
     100% {
         opacity: 1
     }
+}
+
+@media (max-width: 1025px) {
+  .app {
+    width: 900px;
+    .bg-decoration--dn {
+        display: none;
+      }
+  }
+}
+
+@media (max-width: 900px) {
+  .app {
+    width: 700px;
+    .bg-decoration {
+        right: 60px;
+        height: 300px;
+      }
+  }
+}
+@media (max-width: 721px) {
+  .app {
+    .bg-decoration {
+      right: 30px;
+      bottom: 20px;
+      height: 320px;
+    }
+  }
+}
+
+@media (max-width: 700px) {
+  .app {
+    width: 500px;
+  }
+}
+
+@media (max-width: 425px) {
+  .app {
+    width: 350px;
+  }
+  main {
+    margin-top: 30px;
+  }
 }

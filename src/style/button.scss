@@ -30,3 +30,24 @@
     filter: grayscale(100%);
   }
 }
+
+@media (max-width: 768px) {
+  .button {
+    font-size: 12px;
+    &__long {
+      width: 145px;
+      height: 33px;
+      margin: 25px auto 0 auto;
+    }
+  }
+}
+
+@media (max-width: 425px) {
+    .button {
+      &__long {
+        width: 100px;
+        height: 25px;
+        margin: 20px auto 0 auto;
+      }
+    }
+}

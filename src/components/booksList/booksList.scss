@@ -29,3 +29,45 @@
       }
     }
 }
+
+@media (max-width: 900px) {
+  .book {
+    &__inner {
+      grid-template-columns: repeat(3, 216px);
+    }
+    &__item {
+      &_img {
+        width: 216px;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .book {
+    &__inner {
+      grid-template-columns: repeat(3, 156px);
+      gap: 15px;
+    }
+    &__item {
+      &-img {
+        width: 156px;
+        height: 250px;
+      }
+    }
+  }
+}
+
+@media (max-width: 425px) {
+  .book {
+    &__inner {
+      grid-template-columns: repeat(2, 167px);
+    }
+    &__item {
+      &-img {
+        width: 167px;
+        height: 260px;
+      }
+    }
+  }
+}
