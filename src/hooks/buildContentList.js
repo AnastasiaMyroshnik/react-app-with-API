@@ -16,7 +16,6 @@ const useSendingRequest = (request, pageSize) => {
   useEffect(() => getData(), []);
 
   const getData = (page) => {
-    console.log('getData');
     setNewContentLoading(true);
     service.getAllItems(request, page, pageSize)
       .then(getLoadContent)
@@ -24,7 +23,6 @@ const useSendingRequest = (request, pageSize) => {
   }
 
   const getLoadContent = (newContentList) => {
-    console.log('loaded');
     if (newContentList.length < pageSize) {
       setIsEnd(true)
     }
@@ -55,8 +53,6 @@ const useRenderContentList = (request, choosenUrl, contentType) => {
   }
   
   const renderContent = (data) => {
-    console.log('render content list');
-    console.log(data);
     const items = data.map((item, i) => {
       const descriptionPersonage = contentType === 'personageList' ? <><div className="personage__name">{item.name}</div>
       <div className="personage__alias">{item.aliases[0]}</div>
