@@ -8,7 +8,7 @@
     z-index: 5;
     background-color: #fff;
     display: grid;
-    grid-template: max-content / 80px 285px;
+    grid-template: max-content / 85px 280px;
     grid-auto-rows: max-content;
     gap: 10px;
     &-name {
@@ -18,6 +18,10 @@
       font-size: 22px;
       line-height: 29px;
       text-transform: uppercase;
+    }
+    &-descr {
+      grid-column: 1/3;
+      text-align: center;
     }
     &-actor {
       margin-top: 5px;

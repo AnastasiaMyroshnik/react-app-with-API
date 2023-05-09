@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 import Service from '../services/Service';
 
-const useBuildOneItem = (itemUrl) => {
+const useBuildOneItem = (itemUrl, content) => {
   const [item, setItem] = useState(null);
   const [load, setLoad] = useState(false);
   const [errorStatus, setErrorStatus] = useState(false);
@@ -22,10 +22,18 @@ const useBuildOneItem = (itemUrl) => {
       setErrorStatus(true);
     }
     setLoad(true);
-    service.getRequest(itemUrl)
-      .then(item => setItem(item))
-      .then(setLoad(false))
-      .catch(getError)
+    setErrorStatus(false);
+    if (content === 'personage') {
+      service.getPersonage(itemUrl)
+        .then(item => setItem(item))
+        .then(setLoad(false))
+        .catch(getError)
+    } else {
+      service.getRequest(itemUrl)
+        .then(item => setItem(item))
+        .then(setLoad(false))
+        .catch(getError)
+    }
   }
 
   return { item, load, errorStatus }

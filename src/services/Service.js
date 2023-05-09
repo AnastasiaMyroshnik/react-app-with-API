@@ -9,10 +9,7 @@ class Service {
   getAllItems = async (request, page = 1, pageSize) => {
     return await this.getData(`https://anapioficeandfire.com/api/${request}/?page=${page}&pageSize=${pageSize}`)
   }
-  getOneBook = async (id) => {
-    return await this.getData(`https://anapioficeandfire.com/api/books/${id}`)
-  }
-  getRequest = async  (url) => {
+  getRequest = async (url) => {
     return await this.getData(url)
   }
 
@@ -22,16 +19,11 @@ class Service {
   }
 
   transformation = async (item) => {
-
     let allegiance;
-    if (item.allegiances) {
-      await this.getRequest(item.allegiances).then(res => allegiance = res);
+    if ((item.allegiances.length >= 1 && item.allegiances[0].length >= 1)) {
+      await this.getRequest(item.allegiances).then(res => allegiance = res).catch();
     }
-    const book = [...item.books, ...item.povBooks];
-    let books = [];
-    book.forEach(async (book, i) => {
-      await this.getRequest(book).then(res => books[i] = res);
-    })
+
     return  {
       name: item.name,
       gender: item.gender,
@@ -42,8 +34,7 @@ class Service {
       aliases: item.aliases,
       allegiances: allegiance,
       tvSeries: item.tvSeries,
-      playedBy: item.playedBy,
-      books: books
+      playedBy: item.playedBy
     }
   }
 }

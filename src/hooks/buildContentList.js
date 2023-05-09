@@ -5,7 +5,7 @@ import Service from '../services/Service';
 import '../components/personageList/personageList.scss';
 
 const useSendingRequest = (request, pageSize) => {
-const [contentList, setContentList] = useState([]);
+  const [contentList, setContentList] = useState([]);
   const [load, setLoad] = useState(true);
   const [newContentLoading, setNewContentLoading] = useState(false);
   const [errorStatus, setErrorStatus] = useState(false);
@@ -13,9 +13,10 @@ const [contentList, setContentList] = useState([]);
   const [isEnd, setIsEnd] = useState(false);
   const service = new Service();
 
-  useEffect(() => getData, []);
+  useEffect(() => getData(), []);
 
   const getData = (page) => {
+    console.log('getData');
     setNewContentLoading(true);
     service.getAllItems(request, page, pageSize)
       .then(getLoadContent)
@@ -23,6 +24,7 @@ const [contentList, setContentList] = useState([]);
   }
 
   const getLoadContent = (newContentList) => {
+    console.log('loaded');
     if (newContentList.length < pageSize) {
       setIsEnd(true)
     }
@@ -30,27 +32,31 @@ const [contentList, setContentList] = useState([]);
     setLoad(false);
     setNewContentLoading(false);
     setPageNum(pageNum => pageNum + 1);
+    console.log(contentList);
   }
 
   const getError = () => {
+    console.log('error');
     setLoad(false);
     setErrorStatus(true);
   }
-
+  
   return { contentList, errorStatus, load, newContentLoading, isEnd, getData, pageNum }
 }
 
 const useRenderContentList = (request, choosenUrl, contentType) => {
 
   const refs = useRef([]);
-
+  
   const focus = (index) => {
     refs.current.forEach(item => item.classList.remove('personage__item--selected'));
     refs.current[index].classList.add('personage__item--selected');
     refs.current[index].focus();
   }
-
+  
   const renderContent = (data) => {
+    console.log('render content list');
+    console.log(data);
     const items = data.map((item, i) => {
       const descriptionPersonage = contentType === 'personageList' ? <><div className="personage__name">{item.name}</div>
       <div className="personage__alias">{item.aliases[0]}</div>
